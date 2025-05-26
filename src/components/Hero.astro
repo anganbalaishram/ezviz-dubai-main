@@ -1,0 +1,599 @@
+---
+interface CarouselItem {
+  title: string;
+  description: string;
+  ctaText: string;
+  desktopImage: string;
+  mobileImage: string;
+  link: string;
+}
+
+const items: CarouselItem[] = [
+  {
+    title: "OUR PRODUCTS",
+    description: "Cutting-edge surveillance solutions designed for superior performance.",
+    ctaText: "Explore Our Products",
+    desktopImage: "/images/Banner/Banner (1).jpg",
+    mobileImage: "/images/categories/products/hero/mobile4.jpg",
+    link: "/products"
+  },
+  {
+    title: "LATEST BLOGS",
+    description: "Enhance your home's security with state-of-the-art monitoring solutions.",
+    ctaText: "Discover More",
+    desktopImage: "/images/Banner/Banner (2).jpg",
+    mobileImage: "/images/categories/products/hero/Sana 2.jpg",
+    link: "/blog"
+  },
+  {
+    title: "INSIGHTS",
+    description: "Top-tier surveillance solutions tailored for businesses and institutions.",
+    ctaText: "Explore Insights",
+    desktopImage: "/images/Banner/Banner (3).jpg",
+    mobileImage: "/images/categories/products/hero/mobile5.jpg",
+    link: "/insights"
+  }
+];
+---
+
+<!-- Carousel Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "WebPage",
+        "name": "OUR PRODUCTS",
+        "description": "Cutting-edge surveillance solutions designed for superior performance.",
+        "url": "/products",
+        "image": {
+          "@type": "ImageObject",
+          "url": "/images/categories/products/hero/Products.png",
+          "width": 1920,
+          "height": 1080
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "WebPage",
+        "name": "LATEST BLOGS",
+        "description": "Enhance your home's security with state-of-the-art monitoring solutions.",
+        "url": "/blog",
+        "image": {
+          "@type": "ImageObject",
+          "url": "/images/categories/products/hero/Blog.png",
+          "width": 1920,
+          "height": 1080
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "WebPage",
+        "name": "INSIGHTS",
+        "description": "Top-tier surveillance solutions tailored for businesses and institutions.",
+        "url": "/insights",
+        "image": {
+          "@type": "ImageObject",
+          "url": "/images/categories/products/hero/Insights.png",
+          "width": 1920,
+          "height": 1080
+        }
+      }
+    }
+  ]
+}
+</script>
+
+<div class="carousel-wrapper mb-10">
+    <div id="default-carousel" class="relative w-full" data-carousel="static">
+        <!-- Carousel wrapper -->
+        <div class="relative h-full overflow-hidden rounded-none">
+            <!-- Items -->
+            {items.map((item, index) => (
+                <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full opacity-0" data-carousel-item>
+                    <div class="carousel-item-container" onclick={`window.location.href='${item.link}'`}>
+                        <!-- Desktop/Tablet Image -->
+                        <img
+                            src={item.desktopImage}
+                            class="carousel-image absolute block w-full h-full object-cover transition-all duration-500 hidden md:block"
+                            alt={`UNV ${item.title}`}
+                            width="1920"
+                            height="1080"
+                            loading={index === 0 ? 'eager' : 'lazy'}
+                        />
+                        <!-- Mobile Image -->
+                        <img
+                            src={item.mobileImage}
+                            class="carousel-image absolute block w-full h-96 object-cover transition-all duration-500 md:hidden"
+                            alt={`UNV ${item.title} Mobile`}
+                            width="600"
+                            height="900"
+                            loading={index === 0 ? 'eager' : 'lazy'}
+                        />
+                        <div class="carousel-caption">
+                            <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold heading-font">{item.title}</h3>
+                            <p class="text-sm sm:text-base md:text-lg lg:text-xl mb-3 sm:mb-4 opacity-90">{item.description}</p>
+                            <span class="shop-now-btn">{item.ctaText}</span>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <!-- Slider indicators -->
+        <div class="absolute z-30 flex -translate-x-1/2 bottom-3 sm:bottom-4 md:bottom-5 left-1/2 space-x-2 sm:space-x-3 rtl:space-x-reverse">
+            {items.map((_, index) => (
+                <button
+                    type="button"
+                    class="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/50 hover:bg-white transition-colors"
+                    aria-current={index === 0 ? "true" : "false"}
+                    aria-label={`Slide ${index + 1}`}
+                    data-carousel-slide-to={index}
+                ></button>
+            ))}
+        </div>
+
+        <!-- Slider controls -->
+        <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-2 sm:px-3 md:px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+            <span class="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-transparent hover:bg-blue-500/50 transition-all duration-200 focus:ring-2 focus:ring-white">
+                <svg class="w-3 h-3 sm:w-4 sm:h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+                </svg>
+                <span class="sr-only">Previous</span>
+            </span>
+        </button>
+        <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-2 sm:px-3 md:px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+            <span class="inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-transparent hover:bg-blue-500/50 transition-all duration-200 focus:ring-2 focus:ring-white">
+                <svg class="w-3 h-3 sm:w-4 sm:h-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                </svg>
+                <span class="sr-only">Next</span>
+            </span>
+        </button>
+    </div>
+</div>
+
+<style is:global>
+    
+    /* Base animations with more professional effects */
+    @keyframes subtleGlow {
+        0% { text-shadow: 0 0 1px rgba(255,255,255,0.2); }
+        50% { text-shadow: 0 0 8px rgba(255,255,255,0.4); }
+        100% { text-shadow: 0 0 1px rgba(255,255,255,0.2); }
+    }
+
+    @keyframes buttonReveal {
+        from { 
+            opacity: 0; 
+            transform: translateY(10px);
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+        from { transform: translateY(10px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes mobileReveal {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Professional font styling */
+    .heading-font {
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 0.5px;
+    }
+
+    /* Base Carousel Styles */
+    .carousel-image {
+        object-fit: cover;
+        width: 100%;
+        transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .carousel-item-container {
+        position: relative;
+        height: 100%;
+        cursor: pointer;
+        overflow: hidden;
+        perspective: 1000px;
+        touch-action: manipulation;
+    }
+
+    body, html {
+        overflow-x: hidden; 
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .carousel-wrapper {
+        width: 100%;
+        position: relative;
+    }
+
+    .carousel-caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+        color: white;
+        padding: 2rem;
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+        border-radius: 0.5rem;
+        opacity: 1;
+        transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    }
+
+    .carousel-caption h3 {
+        margin-bottom: 0.5rem;
+        opacity: 1;
+        transform: translateY(0);
+        animation: subtleGlow 4s infinite alternate;
+    }
+
+    .carousel-caption p {
+        transform: translateY(0);
+        opacity: 1;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    }
+
+    .shop-now-btn {
+        display: inline-block;
+        margin-top: 1.25rem;
+        padding: 0.7rem 1.8rem;
+        background: rgba(0, 0, 0, 0.3);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.5);
+        border-radius: 0.25rem;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+        touch-action: manipulation;
+        opacity: 1;
+        transform: translateY(0);
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        text-shadow: none;
+    }
+
+    .shop-now-btn:hover,
+    .shop-now-btn:active {
+        background: #1e40af;
+        border-color: #1e40af;
+        box-shadow: 0 5px 15px rgba(30,64,175,0.3);
+        transform: translateY(-2px);
+    }
+    .shop-now-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    transition: all 0.5s ease-in-out;
+    transform: skewX(-20deg);
+    z-index: 0;
+}
+
+.shop-now-btn:hover::before,
+.shop-now-btn:active::before {
+    left: 200%;
+}
+
+.shop-now-btn:hover,
+.shop-now-btn:active {
+    background: #1e40af;
+    border-color: #1e40af;
+    box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Ensure text stays on top */
+.shop-now-btn span {
+    position: relative;
+    z-index: 1;
+}
+    .carousel-item-container:hover .carousel-image,
+    .carousel-item-container:active .carousel-image,
+    .carousel-item-container.mobile-active .carousel-image {
+        transform: scale(1.05);
+    }
+    
+
+    .carousel-wrapper {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+
+    /* Indicator styling improvements */
+    [data-carousel-slide-to] {
+        transition: all 0.3s ease;
+    }
+
+    [data-carousel-slide-to]:hover {
+        transform: scale(1.2);
+    }
+    
+    /* Active slide animations */
+    .carousel-item.active .carousel-item-container .carousel-caption {
+        animation: fadeIn 0.6s ease forwards;
+    }
+    
+    .carousel-item.active .carousel-item-container .carousel-caption h3 {
+        animation: slideUp 0.5s ease 0.2s forwards;
+    }
+    
+    .carousel-item.active .carousel-item-container .carousel-caption p {
+        animation: slideUp 0.5s ease 0.3s forwards;
+    }
+    
+    .carousel-item.active .carousel-item-container .shop-now-btn {
+        animation: buttonReveal 0.5s ease 0.4s forwards;
+    }
+
+    /* Mobile (up to 767px) */
+    @media (max-width: 767px) {
+        #default-carousel {
+            height: 24rem; /* h-96 = 24rem = 384px */
+        }
+        
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 24rem; /* h-96 = 24rem = 384px */
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1) !important;
+        }
+        
+        /* Caption styling for mobile */
+        .carousel-caption {
+            width: 85%;
+            padding: 1.5rem;
+        }
+        
+        .carousel-caption h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .carousel-caption p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .shop-now-btn {
+            padding: 0.6rem 1.5rem;
+            font-size: 0.85rem;
+            background: rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    /* Tablet (768px to 1023px) */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        #default-carousel {
+            height: 70vh;
+            min-height: 500px;
+            max-height: 800px;
+        }
+        
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Tablet-specific caption styling */
+        .carousel-caption {
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .carousel-caption h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-caption p {
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .shop-now-btn {
+            padding: 0.8rem 2rem;
+            font-size: 0.95rem;
+        }
+    }
+
+    /* Desktop (1024px and up) */
+    @media (min-width: 1024px) {
+        #default-carousel {
+            height: 90vh;
+            min-height: 700px;
+            max-height: 1000px;
+        }
+        
+        .carousel-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Make captions slightly larger on desktop */
+        .carousel-caption {
+            padding: 2.5rem;
+            max-width: 700px;
+        }
+
+        .carousel-caption h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-caption p {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .shop-now-btn {
+            padding: 0.9rem 2.2rem;
+            font-size: 1rem;
+        }
+    }
+    
+</style>
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.querySelector('#default-carousel');
+        if (!carousel) return;
+    
+        const items = carousel.querySelectorAll('[data-carousel-item]');
+        const indicators = carousel.querySelectorAll('[data-carousel-slide-to]');
+        const prevBtn = carousel.querySelector('[data-carousel-prev]');
+        const nextBtn = carousel.querySelector('[data-carousel-next]');
+        let currentIndex = 0;
+        let autoSlideInterval;
+    
+        function resetCaptionAnimations(item) {
+            const captions = item.querySelectorAll('.carousel-caption h3, .carousel-caption p, .shop-now-btn');
+            captions.forEach(el => {
+                // Reset animations
+                el.style.animation = 'none';
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                
+                // Trigger reflow to restart animations
+                void el.offsetWidth;
+            });
+        }
+    
+        function animateCaptions(item) {
+            const h3 = item.querySelector('.carousel-caption h3');
+            const p = item.querySelector('.carousel-caption p');
+            const btn = item.querySelector('.shop-now-btn');
+    
+            // Animate title
+            h3.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s';
+            h3.style.opacity = '1';
+            h3.style.transform = 'translateY(0)';
+    
+            // Animate description
+            p.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s';
+            p.style.opacity = '1';
+            p.style.transform = 'translateY(0)';
+    
+            // Animate button
+            btn.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s';
+            btn.style.opacity = '1';
+            btn.style.transform = 'translateY(0)';
+        }
+    
+        function showItem(index) {
+            // Update current index
+            currentIndex = (index + items.length) % items.length;
+    
+            // Hide all items
+            items.forEach(item => {
+                item.classList.remove('active', 'opacity-100', 'translate-x-0');
+                item.classList.add('opacity-0', 'translate-x-full');
+                resetCaptionAnimations(item);
+            });
+    
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('bg-white', i === currentIndex);
+                indicator.classList.toggle('bg-white/50', i !== currentIndex);
+            });
+    
+            // Show current item
+            const currentItem = items[currentIndex];
+            currentItem.classList.remove('opacity-0', 'translate-x-full');
+            currentItem.classList.add('active', 'opacity-100', 'translate-x-0');
+            
+            // Animate captions
+            animateCaptions(currentItem);
+            resetAutoSlide();
+        }
+    
+        function nextSlide() {
+            showItem(currentIndex + 1);
+        }
+    
+        function prevSlide() {
+            showItem(currentIndex - 1);
+        }
+    
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+    
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+    
+        // Event listeners
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => showItem(index));
+        });
+    
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    
+        // Initialize
+        showItem(0);
+        startAutoSlide();
+    
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+        carousel.addEventListener('mouseleave', startAutoSlide);
+    });
+    </script>

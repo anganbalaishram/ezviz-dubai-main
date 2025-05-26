@@ -1,0 +1,680 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "./src/styles/global.css";
+
+const title = "Product Categories | Surveillance Solutions";
+const description =
+  "Explore our comprehensive range of surveillance solutions including IP cameras, analog cameras, PTZ cameras, thermal cameras, NVR, DVR, storage solutions, and accessories.";
+
+const categories = [
+  {
+    title: "Wifi Free Cameras",
+    description:
+      "Uniview provides affordable, high-quality IP cameras with smart analytics and performance",
+    imageUrl: "/images/produccat/Wififree.png",
+    href: "/categories/wifiFree",
+    icon: "video",
+  },
+  {
+    title: "Outdoor Cameras",
+    description:
+      "Uniview's analog cameras offer high-definition video, easy maintenance, and affordability.",
+    imageUrl: "/images/produccat/Outdoor.png",
+    href: "/categories/outdoorcamera",
+    icon: "camera",
+  },
+  {
+    title: "Indoor Cameras",
+    description:
+      "Uniview's PTZ cameras offer wide coverage, zoom, and robust stability",
+    imageUrl: "/images/produccat/Indoor.png",
+    href: "/categories/indoorcamera",
+    icon: "rotate-cw",
+  },
+];
+---
+
+<style>
+  /* Enhanced Animations */
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+
+  /* Animation Classes */
+  .category-item {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .category-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .category-item:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
+  .category-item:nth-child(3) {
+    animation-delay: 0.5s;
+  }
+
+  .hero-content {
+    animation: slideInLeft 1s ease-out forwards;
+  }
+
+  .hero-image {
+    animation: slideInRight 1s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+
+  .stat-item {
+    animation: scaleIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .stat-item:nth-child(1) {
+    animation-delay: 0.8s;
+  }
+
+  .stat-item:nth-child(2) {
+    animation-delay: 1s;
+  }
+
+  .stat-item:nth-child(3) {
+    animation-delay: 1.2s;
+  }
+
+  .section-title {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .section-subtitle {
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+  }
+
+  /* Fixed Hero Banner - Full Width with No White Space */
+  .hero-banner {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
+  .hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&h=1080&fit=crop') center/cover;
+    opacity: 0.15;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Enhanced Card Animations */
+  .category-card {
+    background: #ffffff;
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .category-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 30px 60px -12px rgba(59, 130, 246, 0.4);
+    border-color: rgba(59, 130, 246, 0.5);
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8, #3b82f6);
+    background-size: 200% 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s ease;
+  }
+
+  .category-card:hover::before {
+    transform: scaleX(1);
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    background: #f8fafc;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+  }
+
+  .icon-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .category-card:hover .icon-badge {
+    transform: scale(1.2) rotate(10deg);
+    background: #3b82f6;
+    animation: bounce 1s ease-in-out infinite;
+  }
+
+  .category-card:hover .icon-badge svg {
+    color: white;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    max-width: 600px;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-8px) scale(1.05);
+    animation: float 2s ease-in-out infinite;
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: brightness(0.95);
+    border-radius: 8px;
+  }
+
+  .category-card:hover .product-image {
+    transform: scale(1.1) rotate(2deg);
+    filter: brightness(1.1) saturate(1.2);
+  }
+
+  /* Hero Image Container - Full Coverage */
+  .hero-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .hero-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: brightness(1.1) contrast(1.1);
+  }
+
+  .hero-image:hover .hero-main-image {
+    transform: scale(1.05);
+    filter: brightness(1.2) contrast(1.2) saturate(1.1);
+  }
+
+  .professional-badge {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .hero-image:hover .professional-badge {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+  }
+
+  /* Button Animations */
+  .animated-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .animated-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .animated-button:hover::before {
+    left: 100%;
+  }
+
+  .animated-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Floating Elements */
+  .floating-element {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .floating-element:nth-child(odd) {
+    animation-delay: -1.5s;
+  }
+
+  /* Typing Effect for Main Title */
+
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Enhanced Help Section */
+  .help-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .help-section::before {
+    content: '';
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 256px;
+    height: 256px;
+    border-radius: 50%;
+    background: #3b82f6;
+    opacity: 0.1;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .help-section::after {
+    content: '';
+    position: absolute;
+    left: -20px;
+    bottom: -20px;
+    width: 256px;
+    height: 256px;
+    border-radius: 50%;
+    background: #6366f1;
+    opacity: 0.1;
+    animation: float 4s ease-in-out infinite reverse;
+  }
+
+  /* Scroll-triggered animations */
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+  }
+
+  .animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<Layout title={title} description={description}>
+  <!-- Enhanced Hero Banner Section - True Full Width -->
+  <section class="hero-banner">
+    <div class="w-full relative z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16">
+          <div class="text-white hero-content">
+            <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              Wire-Free <span class="text-blue-400 typing-effect">Security</span>
+            </h1>
+            <p class="text-lg text-slate-200 mb-8 leading-relaxed max-w-lg animate-on-scroll">
+              Professional-grade wireless surveillance systems with advanced AI detection, 4K resolution, and enterprise-level security features.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="/categories/wire-free" class="animated-button inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium text-base transition-all duration-300 shadow-lg hover:shadow-xl">
+                Explore Solutions
+                <svg class="ml-3 w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <a href="/demo" class="animated-button inline-flex items-center justify-center border border-slate-300 hover:border-white text-white px-8 py-3 rounded-lg font-medium text-base hover:bg-white hover:text-slate-900 transition-all duration-300">
+                Request Demo
+              </a>
+            </div>
+
+            <!-- Enhanced Stats Section -->
+            <div class="stats-grid mt-12">
+              <div class="stat-item floating-element">
+                <div class="text-2xl font-bold text-blue-400 mb-2">99.9%</div>
+                <div class="text-sm text-slate-300">Uptime Reliability</div>
+              </div>
+              <div class="stat-item floating-element">
+                <div class="text-2xl font-bold text-blue-400 mb-2">24/7</div>
+                <div class="text-sm text-slate-300">Monitoring Support</div>
+              </div>
+              <div class="stat-item floating-element">
+                <div class="text-2xl font-bold text-blue-400 mb-2">256-bit</div>
+                <div class="text-sm text-slate-300">Encryption Security</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Fixed Hero Image - Full Coverage -->
+          <div class="relative hidden lg:block hero-image">
+            <div class="hero-image-container floating-element">
+              <img 
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop" 
+                alt="Professional Security Camera"
+                class="hero-main-image"
+              />
+              <div class="professional-badge">
+                Professional Grade
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Categories Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Animated Title Section -->
+      <div class="text-center mb-16">
+        <h2 class="section-title text-3xl font-bold text-gray-900 mb-4">
+          Product Categories
+        </h2>
+        <div class="w-20 h-1 bg-blue-600 mx-auto mb-6 animate-on-scroll"></div>
+        <p class="section-subtitle text-lg text-gray-600 max-w-3xl mx-auto">
+          Professional surveillance solutions engineered for enterprise security requirements
+        </p>
+      </div>
+
+      <!-- Enhanced Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {categories.map((category, index) => (
+          <a href={category.href} class="category-item group block">
+            <div class="category-card h-full">
+              <!-- Enhanced Image Container -->
+              <div class="image-container">
+                <img 
+                  src={category.imageUrl} 
+                  alt={category.title}
+                  class="product-image"
+                />
+                
+                <!-- Animated Icon Badge -->
+                <div class="icon-badge">
+                  <svg class="w-6 h-6 text-blue-600 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {category.icon === 'video' && (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    )}
+                    {category.icon === 'camera' && (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                    )}
+                    {category.icon === 'rotate-cw' && (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.755 10.059a7.5 7.5 0 0112.548-3.364l1.903 1.903h-3.183a13.5 13.5 0 10-4.816 4.816v-3.183l1.903 1.903a7.5 7.5 0 01-8.355-2.075z"></path>
+                    )}
+                  </svg>
+                </div>
+              </div>
+              
+              <!-- Enhanced Content -->
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-all duration-300">
+                  {category.title}
+                </h3>
+                <p class="text-gray-600 mb-5 leading-relaxed">
+                  {category.description}
+                </p>
+                <div class="flex items-center text-blue-600 font-medium group-hover:text-blue-700 transition-all duration-300">
+                  <span>View Products</span>
+                  <svg class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Enhanced Help Section -->
+      <div class="help-section mt-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-10 border border-gray-200 overflow-hidden relative animate-on-scroll">
+        <div class="relative z-10 text-center">
+          <h3 class="text-2xl font-semibold text-gray-900 mb-4 animate-on-scroll">
+            Expert Consultation Available
+          </h3>
+          <div class="w-16 h-1 bg-blue-600 mx-auto mb-6 animate-on-scroll"></div>
+          <p class="text-gray-600 mb-8 max-w-2xl mx-auto animate-on-scroll">
+            Get professional recommendations tailored to your security requirements from our certified surveillance specialists.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contact"
+              class="animated-button inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-blue-700 transition-all duration-300"
+            >
+              Schedule Consultation
+              <svg class="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </a>
+            <a
+              href="/support"
+              class="animated-button inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-all duration-300"
+            >
+              Technical Support
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Enhanced scroll-triggered animations
+  document.addEventListener('DOMContentLoaded', function() {
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    animateElements.forEach(el => observer.observe(el));
+
+    // Add staggered animation delays
+    const categoryItems = document.querySelectorAll('.category-item');
+    categoryItems.forEach((item, index) => {
+      (item as HTMLElement).style.animationDelay = `${0.1 + index * 0.2}s`;
+    });
+
+    // Enhanced button hover effects
+    const buttons = document.querySelectorAll('.animated-button');
+    buttons.forEach(button => {
+      button.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px) scale(1.02)';
+      });
+      
+      button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+
+    // Parallax effect for hero background
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const parallax = document.querySelector('.hero-banner::before');
+      if (parallax) {
+        const speed = scrolled * 0.5;
+        (parallax as HTMLElement).style.transform = `translateY(${speed}px)`;
+      }
+    });
+  });
+</script>

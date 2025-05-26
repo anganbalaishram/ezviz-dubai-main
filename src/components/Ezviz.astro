@@ -1,0 +1,125 @@
+---
+
+---
+<main class="container px-4 py-8 mt-6" id="ezviz-section">
+  <div class="flex flex-col md:flex-row gap-8">
+    <!-- Left Content Column - Static but polished -->
+    <div class="md:w-1/2 transition-all duration-500 ease-in-out">
+      <p class="text-blue-500 text-xl font-medium tracking-wider mb-6 animate-[slideIn_0.5s_ease-in-out] opacity-0 animation-trigger">
+        <span class="mr-2">O U R</span> E Z V I Z
+      </p>
+
+      <h1 class="text-4xl font-bold text-gray-800 mb-12 animate-[slideIn_0.7s_ease-in-out] opacity-0 animation-trigger">
+        ELEVATE YOUR SECURITY WITH EZVIZ
+      </h1>
+
+      <div class="mb-10 animate-[slideIn_0.9s_ease-in-out] opacity-0 animation-trigger">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">
+          Advanced Security Solutions:
+        </h2>
+        <p class="text-gray-600 leading-relaxed">
+          At Ezviz Dubai, we provide top-tier EZVIZ security solutions tailored
+          for both residential and commercial needs in Dubai. Discover our range
+          of advanced cameras and systems, expertly designed to safeguard your
+          property with precision and reliability.
+        </p>
+      </div>
+
+      <div class="mb-10 animate-[slideIn_1.1s_ease-in-out] opacity-0 animation-trigger">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">
+          Custom Security Tailored for You:
+        </h2>
+        <p class="text-gray-600 leading-relaxed">
+          Our expert team is prepared to address your specific security needs by
+          offering customized EZVIZ solutions, ranging from smart home setups to
+          advanced business surveillance systems.
+        </p>
+      </div>
+
+      <div class="mb-10 animate-[slideIn_1.3s_ease-in-out] opacity-0 animation-trigger">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">
+          Expert Installation & Support:
+        </h2>
+        <p class="text-gray-600 leading-relaxed">
+          Trust Ezviz Dubai for professional installation and reliable support,
+          delivering smooth operation and robust security solutions.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Image Column - Animated -->
+    <div class="md:w-1/2">
+      <div class="rounded-lg overflow-hidden mb-4 animate-slideInRight opacity-0 animation-trigger">
+        <img
+          src="/images/Ezvismallbanner.png"
+          alt="EZVIZ Security Solutions"
+          class="w-full h-auto object-cover rounded-lg shadow-xl transition-transform duration-700 hover:scale-105"
+        />
+      </div>
+    </div>
+  </div>
+</main>
+
+<style>
+  @keyframes slideIn {
+    from {
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+
+  /* Initially hide all animated elements */
+  .animation-trigger {
+    animation-play-state: paused;
+  }
+
+  /* Class to trigger animations */
+  .animate-now {
+    animation-play-state: running;
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.getElementById('ezviz-section');
+    const animatedElements = document.querySelectorAll('.animation-trigger');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animatedElements.forEach(el => {
+            el.classList.add('animate-now');
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -100px 0px'
+    });
+
+    if (section) {
+      observer.observe(section);
+    }
+  });
+</script>
