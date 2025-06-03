@@ -1,22 +1,23 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import "./src/styles/global.css";
+import "../../styles/global.css";
+
 
 const title = "Product Categories | Surveillance Solutions";
 const description =
-  "Explore our comprehensive range of surveillance solutions including IP cameras, analog cameras, PTZ cameras, thermal cameras, NVR, DVR, storage solutions, and accessories.";
+  "Explore our comprehensive range of surveillance solutions including Wire-Free Cameras, Outdoor Wi-Fi Cameras and Indoor Wi-Fi Cameras .";
 
 const categories = [
   {
-    title: "Wifi Free Cameras",
+    title: "Wifi-Free Cameras",
     description:
       "Uniview provides affordable, high-quality IP cameras with smart analytics and performance",
     imageUrl: "/images/produccat/Wififree.png",
-    href: "/categories/wifiFree",
+    href: "/categories/wireFree",
     icon: "video",
   },
   {
-    title: "Outdoor Cameras",
+    title: "Outdoor Wi-Fi Cameras",
     description:
       "Uniview's analog cameras offer high-definition video, easy maintenance, and affordability.",
     imageUrl: "/images/produccat/Outdoor.png",
@@ -24,7 +25,7 @@ const categories = [
     icon: "camera",
   },
   {
-    title: "Indoor Cameras",
+    title: "Indoor Wi-Fi Cameras",
     description:
       "Uniview's PTZ cameras offer wide coverage, zoom, and robust stability",
     imageUrl: "/images/produccat/Indoor.png",
@@ -33,7 +34,7 @@ const categories = [
   },
 ];
 ---
-
+<meta charset="UTF-8" />
 <style>
   /* Enhanced Animations */
   @keyframes fadeInUp {
@@ -258,13 +259,19 @@ const categories = [
     position: relative;
     overflow: hidden;
     background: #f8fafc;
-    height: 240px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 15px;
   }
 
+  .image-container img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
   .icon-badge {
     position: absolute;
     top: 1rem;
@@ -474,65 +481,268 @@ const categories = [
   }
 </style>
 
-<Layout title={title} description={description}>
+<Layout   
+ >
   <!-- Enhanced Hero Banner Section - True Full Width -->
-  <section class="hero-banner">
-    <div class="w-full relative z-10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16">
-          <div class="text-white hero-content">
-            <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Wire-Free <span class="text-blue-400 typing-effect">Security</span>
-            </h1>
-            <p class="text-lg text-slate-200 mb-8 leading-relaxed max-w-lg animate-on-scroll">
-              Professional-grade wireless surveillance systems with advanced AI detection, 4K resolution, and enterprise-level security features.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a href="/categories/wire-free" class="animated-button inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium text-base transition-all duration-300 shadow-lg hover:shadow-xl">
-                Explore Solutions
-                <svg class="ml-3 w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </a>
-              <a href="/demo" class="animated-button inline-flex items-center justify-center border border-slate-300 hover:border-white text-white px-8 py-3 rounded-lg font-medium text-base hover:bg-white hover:text-slate-900 transition-all duration-300">
-                Request Demo
-              </a>
-            </div>
+  <style>
+  /* Mobile-First Hero Banner Optimization */
+  .hero-banner {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    /* Mobile: Compact height */
+    min-height: 500px;
+  }
 
-            <!-- Enhanced Stats Section -->
-            <div class="stats-grid mt-12">
-              <div class="stat-item floating-element">
-                <div class="text-2xl font-bold text-blue-400 mb-2">99.9%</div>
-                <div class="text-sm text-slate-300">Uptime Reliability</div>
-              </div>
-              <div class="stat-item floating-element">
-                <div class="text-2xl font-bold text-blue-400 mb-2">24/7</div>
-                <div class="text-sm text-slate-300">Monitoring Support</div>
-              </div>
-              <div class="stat-item floating-element">
-                <div class="text-2xl font-bold text-blue-400 mb-2">256-bit</div>
-                <div class="text-sm text-slate-300">Encryption Security</div>
-              </div>
-            </div>
-          </div>
+  /* Mobile-specific sizing (751x900 equivalent aspect ratio) */
+  @media (max-width: 768px) {
+    .hero-banner {
+      min-height: 600px; /* Compact for mobile */
+      max-height: 700px;
+    }
+    
+    .hero-content-mobile {
+      padding: 2rem 0;
+    }
+    
+    .hero-title-mobile {
+      font-size: 2.5rem !important; /* Smaller on mobile */
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-subtitle-mobile {
+      font-size: 1rem !important;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    
+    .stats-grid-mobile {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+    
+    .stat-item-mobile {
+      padding: 1rem 0.5rem;
+      text-align: center;
+    }
+    
+    .hero-image-mobile {
+      display: block !important;
+      height: 250px;
+      width: 100%;
+      margin-top: 1.5rem;
+    }
+    
+    .hero-image-container-mobile {
+      height: 100%;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .hero-main-image-mobile {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    
+    .professional-badge-mobile {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 12px;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    }
+  }
+
+  /* Tablet and Desktop */
+  @media (min-width: 769px) {
+    .hero-banner {
+      min-height: 500px;
+    }
+  }
+
+  .hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&h=1080&fit=crop') center/cover;
+    opacity: 0.15;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .hero-content {
+    animation: slideInLeft 1s ease-out forwards;
+  }
+
+  .hero-image {
+    animation: slideInRight 1s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+
+  .stat-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item:nth-child(1) { animation-delay: 0.8s; }
+  .stat-item:nth-child(2) { animation-delay: 1s; }
+  .stat-item:nth-child(3) { animation-delay: 1.2s; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    max-width: 500px;
+  }
+
+  .floating-element {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .floating-element:nth-child(odd) {
+    animation-delay: -1.5s;
+  }
+
+  .animated-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .animated-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<!-- Optimized Hero Banner Section -->
+<section class="hero-banner">
+  <div class="w-full relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Mobile Layout: Single Column Stack -->
+      <div class="block md:hidden py-8">
+        <div class="hero-content-mobile text-white text-center">
+          <h1 class="hero-title-mobile font-bold text-white leading-tight">
+            Ezviz <span class="text-blue-400">Dubai</span>
+          </h1>
+          <p class="hero-subtitle-mobile text-slate-200 max-w-sm mx-auto">
+            Professional-grade wireless surveillance systems with advanced AI detection, 4K resolution, and enterprise-level security features.
+          </p>
           
-          <!-- Fixed Hero Image - Full Coverage -->
-          <div class="relative hidden lg:block hero-image">
-            <div class="hero-image-container floating-element">
+          <!-- Mobile Image - Full Width -->
+          <div class="hero-image-mobile">
+            <div class="hero-image-container-mobile">
               <img 
                 src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop" 
                 alt="Professional Security Camera"
-                class="hero-main-image"
+                class="hero-main-image-mobile"
               />
-              <div class="professional-badge">
+              <div class="professional-badge-mobile">
                 Professional Grade
               </div>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <a href="/contact" class="animated-button inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl">
+              Contact Us
+              <svg class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Mobile Stats Grid -->
+          <div class="stats-grid-mobile grid mt-6">
+            <div class="stat-item-mobile stat-item floating-element">
+              <div class="text-lg font-bold text-blue-400 mb-1">99.9%</div>
+              <div class="text-xs text-slate-300">Uptime</div>
+            </div>
+            <div class="stat-item-mobile stat-item floating-element">
+              <div class="text-lg font-bold text-blue-400 mb-1">24/7</div>
+              <div class="text-xs text-slate-300">Support</div>
+            </div>
+            <div class="stat-item-mobile stat-item floating-element">
+              <div class="text-lg font-bold text-blue-400 mb-1">256-bit</div>
+              <div class="text-xs text-slate-300">Security</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Layout: Two Column Grid (Your Original) -->
+      <div class="hidden md:grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16">
+        <div class="text-white hero-content">
+          <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            Ezviz <span class="text-blue-400">Dubai</span>
+          </h1>
+          <p class="text-lg text-slate-200 mb-8 leading-relaxed max-w-lg">
+            Professional-grade wireless surveillance systems with advanced AI detection, 4K resolution, and enterprise-level security features.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/contact" class="animated-button inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium text-base transition-all duration-300 shadow-lg hover:shadow-xl">
+              Contact Us
+              <svg class="ml-3 w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Desktop Stats Section -->
+          <div class="stats-grid mt-12">
+            <div class="stat-item floating-element p-4">
+              <div class="text-2xl font-bold text-blue-400 mb-2">99.9%</div>
+              <div class="text-sm text-slate-300">Uptime Reliability</div>
+            </div>
+            <div class="stat-item floating-element p-4">
+              <div class="text-2xl font-bold text-blue-400 mb-2">24/7</div>
+              <div class="text-sm text-slate-300">Monitoring Support</div>
+            </div>
+            <div class="stat-item floating-element p-4">
+              <div class="text-2xl font-bold text-blue-400 mb-2">256-bit</div>
+              <div class="text-sm text-slate-300">Encryption Security</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Desktop Hero Image -->
+        <div class="relative hero-image">
+          <div class="hero-image-container floating-element" style="position: relative; width: 100%; height: 100%; min-height: 450px; overflow: hidden; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4); border: 2px solid rgba(255, 255, 255, 0.1);">
+            <img 
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop" 
+              alt="Professional Security Camera"
+              style="width: 100%; height: 100%; object-fit: cover; object-position: center; transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: brightness(1.1) contrast(1.1);"
+            />
+            <div style="position: absolute; bottom: -8px; right: -8px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 14px; box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4); border: 2px solid rgba(255, 255, 255, 0.2);">
+              Professional Grade
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Enhanced Categories Section -->
   <section class="py-20 bg-gray-50">
@@ -598,35 +808,66 @@ const categories = [
       </div>
 
       <!-- Enhanced Help Section -->
-      <div class="help-section mt-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-10 border border-gray-200 overflow-hidden relative animate-on-scroll">
-        <div class="relative z-10 text-center">
-          <h3 class="text-2xl font-semibold text-gray-900 mb-4 animate-on-scroll">
-            Expert Consultation Available
-          </h3>
-          <div class="w-16 h-1 bg-blue-600 mx-auto mb-6 animate-on-scroll"></div>
-          <p class="text-gray-600 mb-8 max-w-2xl mx-auto animate-on-scroll">
-            Get professional recommendations tailored to your security requirements from our certified surveillance specialists.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              class="animated-button inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-blue-700 transition-all duration-300"
-            >
-              Schedule Consultation
-              <svg class="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-            <a
-              href="/support"
-              class="animated-button inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-all duration-300"
-            >
-              Technical Support
-            </a>
-          </div>
-        </div>
-      </div>
+      <div class="help-section mt-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-10 border border-gray-200 overflow-hidden relative">
+  <div class="relative z-10 text-center transition-all duration-1000 ease-[cubic-bezier(0.2,0,0,1)] transform [&.active]:opacity-100 [&.active]:translate-y-0 opacity-0 translate-y-8">
+    <h3 class="text-2xl font-semibold text-gray-900 mb-4 transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-100 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5">
+      Expert Consultation Available
+    </h3>
+    <div class="w-16 h-1 bg-blue-600 mx-auto mb-6 transition-all duration-800 ease-[cubic-bezier(0.2,0,0,1)] delay-200 [.active_&]:opacity-100 [.active_&]:scale-x-100 opacity-0 scale-x-0 origin-center"></div>
+    <p class="text-gray-600 mb-8 max-w-2xl mx-auto transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-300 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5">
+      Get professional recommendations tailored to your security requirements from our certified surveillance specialists.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-400 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5">
+      <a
+        href="/contact"
+        class="animated-button inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-blue-700 transition-all duration-400 hover:shadow-lg transform hover:-translate-y-1"
+      >
+        Schedule Consultation
+        <svg class="ml-2 h-5 w-5 transition-transform duration-400 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+     
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const helpSection = document.querySelector('.help-section > div');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('active');
+        }, 50); // Small delay to ensure proper triggering
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  });
+  
+  if (helpSection) {
+    observer.observe(helpSection);
+  }
+
+  // Enhanced button hover effects
+  const buttons = document.querySelectorAll('.animated-button');
+  buttons.forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-3px) scale(1.02)';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0) scale(1)';
+    });
+  });
+});
+</script>
     </div>
   </section>
 </Layout>
